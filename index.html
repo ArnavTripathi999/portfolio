@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arnav Tripathi | Portfolio</title>
+  <meta name="description" content="Portfolio of Arnav Tripathi — Website Designer, Game Developer, 3D Artist & Vibe Coder. Co-founder of NoteX Studios.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Custom cursor: dot + trailing ring -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Fixed navigation -->
+  <nav class="nav" id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <span class="logo-frame">
+          <img src="PFP.png" alt="Arnav Tripathi" class="logo-img">
+        </span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#hero" class="nav-link active" data-section="hero">Home</a></li>
+        <li>
+          <label class="theme-toggle" aria-label="Toggle theme">
+            <span class="toggle-icon moon-icon">&#9790;</span>
+            <span class="toggle-track">
+              <span class="toggle-knob"></span>
+            </span>
+            <span class="toggle-icon sun-icon">&#9728;</span>
+          </label>
+        </li>
+        <li><a href="#gallery" class="nav-link" data-section="gallery">Gallery</a></li>
+        <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ==================== PAGE 1: HERO ==================== -->
+  <section id="hero" class="section hero-section">
+    <div id="hero-canvas" class="canvas-container"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <p class="hero-greeting">&gt; Hello, world.</p>
+        <h1 class="hero-title">Arnav Tripathi</h1>
+        <p class="hero-subtitle">Website Designer <span class="sep">//</span> Game Developer <span class="sep">//</span> 3D Artist <span class="sep">//</span> Vibe Coder</p>
+        <p class="hero-bio">
+          Based in India. Co-founder of NoteX Studios. We built and launched our first independent game on Steam.
+          Specialized in bridging the gap between imagination and execution using Blender and Unity.
+        </p>
+        <a href="#gallery" class="hero-cta">Explore Work <span class="cta-arrow">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PAGE 2: GALLERY ==================== -->
+  <section id="gallery" class="section gallery-section">
+    <div class="section-header">
+      <h2 class="section-title">Gallery</h2>
+      <div class="section-subtitle">/projects &amp; experiments</div>
+    </div>
+
+    <!-- Gallery Section 1: 3D Models & Environments -->
+    <div class="gallery-block">
+      <h3 class="block-title">&lt;3D Models &amp; Environments /&gt;</h3>
+      <div class="grid-3">
+        <div class="grid-item">
+          <div class="grid-item-visual">
+            <img src="images/Blender.png" alt="Low-Poly City" class="grid-img">
+          </div>
+          <div class="grid-item-info">
+            <span class="grid-tag">Blender</span>
+            <h4>Low-Poly</h4>
+            <p>Procedural low-poly environment with dynamic lighting.</p>
+          </div>
+        </div>
+        <div class="grid-item">
+          <div class="grid-item-visual">
+            <img src="images/Unity.png" alt="Cyberpunk Interior" class="grid-img">
+          </div>
+          <div class="grid-item-info">
+            <span class="grid-tag">Unity</span>
+            <h4>Horror Environment</h4>
+            <p>Real-time rendered scene with emissive materials.</p>
+          </div>
+        </div>
+        <div class="grid-item">
+          <div class="grid-item-visual">
+            <img src="images/Sculpting.png" alt="Abstract Sculpture" class="grid-img-reveal">
+          </div>
+          <div class="grid-item-info">
+            <span class="grid-tag">Blender</span>
+            <h4>Abstract Sculpture</h4>
+            <p>Generative geometry with organic topology.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gallery Section 2: Interactive Features & Controls -->
+    <div class="gallery-block" id="interactive-block">
+      <h3 class="block-title">&lt;Interactive Features &amp; Controls /&gt;</h3>
+      <div class="grid-3">
+        <div class="grid-item">
+          <div class="grid-item-info full">
+            <span class="grid-tag">UI</span>
+            <h4>Ambient Control</h4>
+            <p>Adjust the ambient parameters of this section.</p>
+            <div class="ui-control">
+              <label for="ambient-slider">Intensity</label>
+              <input type="range" id="ambient-slider" min="0" max="100" value="50">
+              <span class="slider-value" id="sliderValue">50%</span>
+            </div>
+          </div>
+        </div>
+        <div class="grid-item">
+          <div class="grid-item-info full">
+            <span class="grid-tag">Control</span>
+            <h4>Section State</h4>
+            <p>Toggle to modify the ambient state of this block.</p>
+            <button class="ctrl-btn" id="toggleState">Modify Section State</button>
+            <div class="state-display">
+              <span class="state-label">Ambient Array:</span>
+              <span class="state-value" id="stateValue">ACTIVE</span>
+            </div>
+          </div>
+        </div>
+        <div class="grid-item">
+          <div class="grid-item-info full">
+            <span class="grid-tag">Monitor</span>
+            <h4>Live Clock</h4>
+            <div class="clock-display">
+              <span class="clock-time" id="clockTime">00:00:00</span>
+              <span class="clock-ms" id="clockMs">.000</span>
+            </div>
+            <div class="clock-date" id="clockDate">---</div>
+            <div class="event-log" id="eventLog">
+              <div class="log-entry"><span class="log-time">--:--:--</span> <span class="log-msg">System online</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gallery Section 3: Reactive 3D Canvas Matrix -->
+    <div class="gallery-block" id="reactive-3d-block">
+      <h3 class="block-title">&lt;Reactive 3D Canvas Matrix /&gt;</h3>
+      <div class="grid-3">
+        <div class="grid-item">
+          <div class="grid-item-info full">
+            <span class="grid-tag">Scene</span>
+            <h4>Floating Geometry</h4>
+            <p>A dynamic 3D scene with reactive shapes. Move your cursor over this section to interact.</p>
+            <div class="data-readout">
+              <div class="data-row">
+                <span class="data-label">Track X</span>
+                <span class="data-value" id="trackX">0.00</span>
+              </div>
+              <div class="data-row">
+                <span class="data-label">Track Y</span>
+                <span class="data-value" id="trackY">0.00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid-item canvas-grid-item">
+          <div id="local-3d-canvas" class="local-canvas"></div>
+        </div>
+        <div class="grid-item">
+          <div class="grid-item-info full">
+            <span class="grid-tag">Objects</span>
+            <h4>Shape Composition</h4>
+            <ul class="shape-list">
+              <li><span class="shape-dot" style="--c: #00f2fe"></span> Icosahedron</li>
+              <li><span class="shape-dot" style="--c: #00ff87"></span> Octahedron</li>
+              <li><span class="shape-dot" style="--c: #ff6b6b"></span> Torus Knot</li>
+              <li><span class="shape-dot" style="--c: #ffd93d"></span> Dodecahedron</li>
+            </ul>
+            <div class="scene-status">
+              <span class="status-indicator" id="sceneIndicator"></span>
+              <span id="sceneStatus">Scene Active</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PAGE 3: CONTACT ==================== -->
+  <section id="contact" class="section contact-section">
+    <div class="section-header">
+      <h2 class="section-title">Contact</h2>
+      <div class="section-subtitle">/connect &amp; collaborate</div>
+    </div>
+    <div class="contact-grid">
+      <!-- Left: terminal-style info -->
+      <div class="contact-info">
+        <div class="terminal-window">
+          <div class="terminal-bar">
+            <span class="terminal-dot" style="--c: #ff5f56"></span>
+            <span class="terminal-dot" style="--c: #ffbd2e"></span>
+            <span class="terminal-dot" style="--c: #27c93f"></span>
+            <span class="terminal-title">contact.sh</span>
+          </div>
+          <div class="terminal-body">
+            <p><span class="prompt">&gt;</span> <span class="cmd">who am I</span></p>
+            <p class="output">Arnav Tripathi</p>
+            <p><span class="prompt">&gt;</span> <span class="cmd">location</span></p>
+            <p class="output">India</p>
+            <p><span class="prompt">&gt;</span> <span class="cmd">affiliation</span></p>
+            <p class="output">Co-founder @ NoteX Studios</p>
+            <p><span class="prompt">&gt;</span> <span class="cmd">email</span></p>
+            <p class="output"><a href="#" class="email-link" id="emailLink">arnavcoderingzb@gmail.com</a></p>
+            <p><span class="prompt">&gt;</span> <span class="cmd">social</span></p>
+            <div class="social-links">
+              <a href="https://github.com/ArnavTripathi999" target="_blank" class="social-link">GitHub</a>
+              <a href="https://www.linkedin.com/in/arnav-tripathi-0b8a48376" target="_blank" class="social-link">LinkedIn</a>
+              <a href="#" class="social-link" id="discordLink">Discord</a>
+            </div>
+            <div class="toast" id="toast">Discord ID copied!</div>
+            <p class="blinking-cursor">_</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: contact form -->
+      <div class="contact-form-wrap">
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="form-group">
+            <input type="text" id="formName" class="form-input" required autocomplete="name">
+            <label for="formName" class="form-label">Name</label>
+            <span class="form-line"></span>
+            <span class="form-error">Required</span>
+          </div>
+          <div class="form-group">
+            <input type="email" id="formEmail" class="form-input" required autocomplete="email">
+            <label for="formEmail" class="form-label">Email</label>
+            <span class="form-line"></span>
+            <span class="form-error">Valid email required</span>
+          </div>
+          <div class="form-group">
+            <textarea id="formMessage" class="form-input form-textarea" required rows="4"></textarea>
+            <label for="formMessage" class="form-label">Message</label>
+            <span class="form-line"></span>
+            <span class="form-error">Required</span>
+          </div>
+          <button type="submit" class="submit-btn" id="submitBtn">
+            <span class="btn-text">Send Message</span>
+            <span class="btn-success">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M4 10L8 14L16 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Sent!
+            </span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
