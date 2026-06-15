@@ -569,12 +569,14 @@
   function validate(input) {
     if (input.id === 'formEmail') {
       const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value);
-      input.classList.toggle('error', !isValid && input.value.length > 0);
-      return isValid || input.value.length === 0;
+      const showErr = input.value.length > 0 && !isValid;
+      input.classList.toggle('error', showErr || input.value.length === 0);
+      if (input.value.length === 0) input.classList.add('error');
+      return isValid && input.value.length > 0;
     }
     const isValid = input.value.trim().length > 0;
-    input.classList.toggle('error', !isValid && input.value.length > 0);
-    return isValid || input.value.length === 0;
+    input.classList.toggle('error', !isValid);
+    return isValid;
   }
 
   Object.values(inputs).forEach((input) => {
@@ -594,25 +596,34 @@
 
     if (!valid) return;
 
-    // Simulate submission
     const btnText = submitBtn.querySelector('.btn-text');
     submitBtn.disabled = true;
     btnText.textContent = 'Sending...';
     submitBtn.style.opacity = '0.6';
 
-    setTimeout(() => {
+    emailjs.init('ZtabLpOOP5T2KKIt5');
+
+    const templateParams = {
+      from_name: inputs.name.value,
+      from_email: inputs.email.value,
+      message: inputs.message.value,
+    };
+
+    emailjs.send('service_nbx90rk', 'template_sw6au9p', templateParams)
+    .then(() => {
       submitBtn.disabled = false;
       submitBtn.style.opacity = '';
       submitBtn.classList.add('sent');
       btnText.textContent = 'Send Message';
-
-      // Reset form
       Object.values(inputs).forEach((input) => { input.value = ''; });
-
-      setTimeout(() => {
-        submitBtn.classList.remove('sent');
-      }, 3000);
-    }, 1200);
+      setTimeout(() => { submitBtn.classList.remove('sent'); }, 3000);
+    })
+    .catch(() => {
+      submitBtn.disabled = false;
+      submitBtn.style.opacity = '';
+      btnText.textContent = 'Send Message';
+      alert('Failed to send. Please try again or email me directly.');
+    });
   });
 })();
 
